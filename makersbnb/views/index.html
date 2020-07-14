@@ -114,29 +114,7 @@ hr {
 
 <head> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script></head>
 
-<script>
 
-  $( document ).ready(function() { 
-  
-
-    $('#submit').on('click', function(){
-      var x = $("form").serializeArray();
-      var name = x[0].value;
-      var email = x[1].value;
-      var password =x[2].value;
-
-      console.log(name, email, password);
-
-      $.ajax({
-      type: "GET",
-      url: "/views/test/"})
-      }).done(function() {
-        alert("ajax call done!");
-      });
-    });
-
-
-</script>
 
 
 <body>
@@ -149,7 +127,7 @@ hr {
 
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/test" method="post">
+  <form class="modal-content" action="/main" method="post">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
@@ -166,12 +144,9 @@ hr {
 
       <input id="password" type="password" placeholder="Enter Password" name="psw" required>
     </div>
-
-
-
-      <div class="clearfix">
+    <div class="clearfix">
       <button onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <button method="get" action="/test" id="submit" type="button" class="signupbtn">Sign Up</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
     </div>
   </form> 
 </div>
@@ -179,8 +154,6 @@ hr {
 <script>
 // Get the modal
 var modal = document.getElementById('id01');
-
-
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
