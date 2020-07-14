@@ -5,6 +5,7 @@ class Space {
     this.name = name;
     this.description = description;
     this.price = price;
+    // this.spaces = [];
   }
 
   getName() {
@@ -19,11 +20,16 @@ class Space {
     return this.price;
   }
 
+  // addSpace(space){
+  //   this.spaces.push(space);
+  // }
+
   create(name, description, price) {
     var space = new Space();
     space.set("name", name);
     space.set("description", description);
     space.set("price", price);
+    // addSpace(space)
     console.log('Space listed: ' + space.get("name"));
   }
 
@@ -31,8 +37,14 @@ class Space {
     var result = client.query("INSERT INTO spaces (name, description, price) VALUES('${name}', '${description}', '${price}') RETURNING id, name, description, price;");
   }
 
-  book(space) {
-    
+  view(spaces) {
+    var result = client.query("SELECT * FROM spaces")
+    result.forEach(myFunction)
+    function myFunction(value) {
+    txt = txt + value + "<br>";{
+
+    }
+
   }
 
 }
