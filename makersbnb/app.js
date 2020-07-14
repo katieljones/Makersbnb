@@ -28,18 +28,46 @@ app.get('/', (req,res)=> { //get method
   res.sendFile(path.join(__dirname + '/views/index.html')); //send response
 })
 
-app.post('/main', (req,res)=> { //post method
+app.post('/signupsubmit', (req,res)=> { //post method
   //console.log(req.body.name);
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
   //res.sendStatus(200);
   //Users.create(name, email, password)
-  res.sendFile(path.join(__dirname + '/views/main.html')); //send response
+  res.redirect('/main')
+})
+
+app.post('/loginsubmit', (req,res)=> {
+  var email = req.body.user_email;
+  var password = req.body.user_password;
+  //Users.verify(email,password)
+  console.log(email);
+  console.log(password);
+  // console.log(password);
+  if (true) { //replace true with authenticate method call
+    res.redirect('/main')
+  } else {
+    res.redirect('/')
+  }
+
 })
 
 app.get('/main', (req,res)=> {
   res.sendFile(path.join(__dirname + '/views/main.html')); //send response
+})
+
+app.get('/login', (req,res)=> {
+  res.sendFile(path.join(__dirname + '/views/login.html')); //send response
+})
+
+app.post('/make_listing', (req,res)=>{
+  var listing_name = req.body.listing_name;
+  var listing_description = req.body.listing_description;
+  var listing_price = req.body.listing_price;
+  var listing_dates = req.body.listing_dates;
+  console.log(req.body);
+  res.redirect('/main');
 })
 
 
