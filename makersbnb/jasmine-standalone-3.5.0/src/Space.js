@@ -1,6 +1,12 @@
 "use strict";
+const DatabaseConnection = require('./databaseconnection.js')
 
-class Space {
+module.exports = class Space {
+  static create(name, description, price) {
+
+    var result = DatabaseConnection.send(`INSERT INTO spaces (name, description, price) VALUES('${name}', '${description}', '${price}') RETURNING id, name, description, price;`);
+  }
+
   constructor(name, description, price) {
     this.name = name;
     this.description = description;
@@ -19,20 +25,9 @@ class Space {
     return this.price;
   }
 
-  create(name, description, price) {
-    var space = new Space();
-    space.set("name", name);
-    space.set("description", description);
-    space.set("price", price);
-    console.log('Space listed: ' + space.get("name"));
-  }
-
-  addToDatabase(space) {
-    var result = client.query("INSERT INTO spaces (name, description, price) VALUES('${name}', '${description}', '${price}') RETURNING id, name, description, price;");
-  }
 
   book(space) {
-    
+
   }
 
 }

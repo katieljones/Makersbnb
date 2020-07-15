@@ -1,4 +1,5 @@
 const User = require('./jasmine-standalone-3.5.0/src/User.js')
+const Space = require('./jasmine-standalone-3.5.0/src/Space.js')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -61,11 +62,11 @@ app.get('/login', (req,res)=> {
 })
 
 app.post('/make_listing', (req,res)=>{
-  var listing_name = req.body.listing_name;
-  var listing_description = req.body.listing_description;
-  var listing_price = req.body.listing_price;
-  var listing_dates = req.body.listing_dates;
-  console.log(req.body);
+  var name = req.body.listing_name;
+  var description = req.body.listing_description;
+  var price = req.body.listing_price;
+  var dates = req.body.listing_dates;
+  Space.create(name, description, price)
   res.redirect('/main');
 })
 
