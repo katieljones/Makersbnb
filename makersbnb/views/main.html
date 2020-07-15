@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Make a listing</button>
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="/make_listing" method="post">
+    <div class="container">
+      <h1>Make a listing:</h1>
+      <hr>
+      <label for="listing_name" ><b>Name</b></label>
+      <input type="text" placeholder="Enter Listing Name" name="listing_name" required>
+      <label for="listing_description"><b>Description</b></label><br>
+      <!-- <input type="text" placeholder="Enter Description" name="listing_description" required> -->
+      <!-- <label for="listing_description">Enter Description:</label> -->
+      <textarea name=“listing_description” rows="4" cols="50"></textarea>
+      <label for="price"><b>Price</b></label>
+      <input type="text" placeholder="Enter Price" name="listing_price" required>
+      <label for="dates"><b>Dates</b></label>
+      <input type="text" placeholder="Enter Dates" name="listing_dates" required>
+    </div>
+    <div class="clearfix">
+      <button type="submit" class="signupbtn">Submit listing</button>
+    </div>
+  </form> 
+</div>
+
+
+</body>
+
+</html>
