@@ -1,15 +1,10 @@
 "use strict";
+const DatabaseConnection = require('./databaseconnection.js')
 
-class User {
-  create(name, email, password) {
-    var user = new User();
-    user.set("name", name);
-    user.set("email", email);
-    user.set("password", password);
-    console.log('User created successfully: ' + user.get("name") + ' email: ' + user.get("email"));
+module.exports = class User {
+  static create(name, email, password) {
+
+    var result = DatabaseConnection.send(`INSERT INTO users (name, email, password) VALUES('${name}', '${email}', '${password}') RETURNING id, name, email, password;`);
   }
 
-  addToDatabase(user) {
-    var result = client.query("INSERT INTO users (name, email, password) VALUES('${name}', '${email}', '${password}') RETURNING id, name, email, password;");
-  }
 };
