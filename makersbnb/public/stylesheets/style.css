@@ -16,7 +16,7 @@ input[type=text], input[type=password] {
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
-  background: #f1f1f1;
+  background: mistyrose;
 }
 
 input[type=textarea] {
@@ -25,7 +25,7 @@ input[type=textarea] {
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
-  background: #f1f1f1;
+  background: mistyrose;
 }
 
 /* Add a background color when the inputs get focus */
@@ -38,7 +38,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4CAF50;
+  background-color: hotpink;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
