@@ -66,6 +66,7 @@ app.post('/make_listing', (req,res)=>{
   var description = req.body.listing_description;
   var price = req.body.listing_price;
   var dates = req.body.listing_dates;
+  // console.log(req.body)
   Space.create(name, description, price)
   res.redirect('/main');
 })
