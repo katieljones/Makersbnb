@@ -1,3 +1,4 @@
+const User = require('./jasmine-standalone-3.5.0/src/User.js')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,10 +11,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'html');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,9 +32,9 @@ app.post('/signupsubmit', (req,res)=> { //post method
   //console.log(req.body.name);
   var name = req.body.name;
   var email = req.body.email;
-  var password = req.body.password;
+  var password = req.body.psw;
   //res.sendStatus(200);
-  //Users.create(name, email, password)
+  User.create(name, email, password)
   res.redirect('/main')
 })
 
@@ -44,7 +44,6 @@ app.post('/loginsubmit', (req,res)=> {
   //Users.verify(email,password)
   console.log(email);
   console.log(password);
-  // console.log(password);
   if (true) { //replace true with authenticate method call
     res.redirect('/main')
   } else {
@@ -54,11 +53,11 @@ app.post('/loginsubmit', (req,res)=> {
 })
 
 app.get('/main', (req,res)=> {
-  res.sendFile(path.join(__dirname + '/views/main.html')); //send response
+  res.sendFile(path.join(__dirname + '/views/main.html'));
 })
 
 app.get('/login', (req,res)=> {
-  res.sendFile(path.join(__dirname + '/views/login.html')); //send response
+  res.sendFile(path.join(__dirname + '/views/login.html'));
 })
 
 app.post('/make_listing', (req,res)=>{
@@ -70,21 +69,18 @@ app.post('/make_listing', (req,res)=>{
   res.redirect('/main');
 })
 
-
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+
   res.status(err.status || 500);
   res.render('error');
 });
