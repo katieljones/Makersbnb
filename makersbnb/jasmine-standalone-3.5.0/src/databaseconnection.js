@@ -3,7 +3,7 @@ module.exports = class DatabaseConnection {
 
   static connect() {
   var pg = require('pg');
-  var conString = "postgres://katiejones:demo1234@localhost:5432/makersbnb_test"
+  var conString = "postgres://ssjoemyd:OzZoezt3dw0J7gmncJWYjtidTCMkPdMD@kandula.db.elephantsql.com:5432/ssjoemyd"
   var client = new pg.Client(conString);
 
   client.connect(function(err) {
@@ -16,7 +16,6 @@ module.exports = class DatabaseConnection {
 }
 
   static send(sql) {
-    console.log("you made it!!! boom")
     var client = DatabaseConnection.connect();
     client.query(sql, function(err, result) {
       if(err) {
