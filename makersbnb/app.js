@@ -55,6 +55,7 @@ app.post('/loginsubmit', (req,res)=> {
 
 app.get('/main', (req,res)=> {
   res.sendFile(path.join(__dirname + '/views/main.html'));
+  // $spaces = Space.retrieve();
 })
 
 app.get('/login', (req,res)=> {

@@ -7,6 +7,14 @@ module.exports = class Space {
     var result = DatabaseConnection.send(`INSERT INTO spaces (name, description, price, date_from, date_to) VALUES('${name}', '${description}', '${price}', '${date_from}', '${date_to}') RETURNING id, name, description, price, date_from, date_to;`);
   }
 
+  static retrieve() {
+    var result = DatabaseConnection.send(`SELECT * FROM spaces;`);
+    result.forEach(element => {
+      
+    });
+    return result;
+  }
+
   constructor(name, description, price) {
     this.name = name;
     this.description = description;
