@@ -7,10 +7,14 @@ module.exports = class Space {
     var result = DatabaseConnection.send(`INSERT INTO spaces (name, description, price, date_from, date_to) VALUES('${name}', '${description}', '${price}', '${date_from}', '${date_to}') RETURNING id, name, description, price, date_from, date_to;`);
   }
 
-  static retrieve() {
-    var result = DatabaseConnection.send(`SELECT * FROM spaces;`);
-    console.log(result)
-      
+  static  async retrieve() {
+    var result = await DatabaseConnection.send2(`SELECT * FROM spaces;`);
+    //var result =  DatabaseConnection.send(`SELECT * FROM spaces;`);
+    //console.log("in retrieve");
+    //console.log(result);
+    return result;
+    //console.log("name:" + result.rows[1].name);
+    //console.log("desc:" + result.rows[1].description);
   }
 
 

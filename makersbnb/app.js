@@ -53,8 +53,9 @@ app.post('/loginsubmit', (req,res)=> {
 
 })
 
-app.get('/main', (req,res)=> {
-  Space.retrieve();
+app.get('/main', async (req,res)=> {
+  var data = await Space.retrieve();
+  console.log(data.rows[0]);
   res.sendFile(path.join(__dirname + '/views/main.html'));
 })
 
