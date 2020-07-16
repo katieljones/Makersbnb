@@ -9,11 +9,11 @@ module.exports = class Space {
 
   static retrieve() {
     var result = DatabaseConnection.send(`SELECT * FROM spaces;`);
-    result.forEach(element => {
+    console.log(result)
       
-    });
-    return result;
   }
+
+
 
   constructor(name, description, price) {
     this.name = name;
