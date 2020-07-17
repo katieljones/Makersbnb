@@ -43,8 +43,7 @@ app.post('/signupsubmit', (req,res)=> { //post method
 app.post('/loginsubmit', (req,res)=> {
   var email = req.body.user_email;
   var password = req.body.user_password;
-  console.log(User.verify(email,password))
-  // User.verify(email,password)
+  User.verify(email,password)
   console.log(email);
   console.log(password);
   if (true) { //replace true with authenticate method call
