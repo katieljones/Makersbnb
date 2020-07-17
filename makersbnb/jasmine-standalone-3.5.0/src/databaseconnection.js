@@ -24,11 +24,11 @@ module.exports = class DatabaseConnection {
       }
       client.end();
       return callback(result)
- });
-    })
-
+  });
   }
-  
 
 }
+  
+
+
 // module.exports = DatabaseConnection
