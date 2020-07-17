@@ -18,7 +18,7 @@ module.exports = class DatabaseConnection {
 static send(sql) {
 
   var client = DatabaseConnection.connect();
-  client.end
+  // client.end
   return client.query(sql);
 
 }
@@ -34,11 +34,11 @@ static send(sql) {
   //   }
 
   //   client.end();
-    
+
   //   return result;
 
   //   }
-    
+
 
   // }
 }
