@@ -22,10 +22,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
-var sess;
 app.get('/', (req,res)=> { //get method
   //res.sendFile(path.join(__dirname + '/views/index.html')); //send response
-  res.render('index')
+  res.render('index')// { status: req.session.status } )
 })
 
 app.get('/main', async (req,res)=> {
@@ -47,12 +46,15 @@ app.post('/loginsubmit', async (req,res)=> {
   var password = req.body.user_password;
   var verifyUser = await User.verify(email, password)
   console.log(verifyUser);
-  req.session.userid = verifyUser.id;
-  req.session.username = verifyUser.name;
-  if (true) { //replace true with authenticate method call
-    res.redirect('/main')
-  } else {
+ 
+  if (verifyUser == false) { //replace true with authenticate method call
+    //res.session.status = "Incorrect Login Details"
     res.redirect('/')
+  } else {
+    //req.session.status = ""
+    req.session.userid = verifyUser.id;
+    req.session.username = verifyUser.name;
+    res.redirect('/main')
   }
 })
 
