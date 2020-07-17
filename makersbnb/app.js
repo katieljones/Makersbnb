@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/', (req,res)=> { //get method
-  res.sendFile(path.join(__dirname + '/views/index.html')); //send response
+  //res.sendFile(path.join(__dirname + '/views/index.html')); //send response
   res.render('index')
 })
 
@@ -53,13 +53,13 @@ app.post('/loginsubmit', (req,res)=> {
   }
 })
 
-app.post('/make_listing', (req,res)=>{
+app.post('/make_listing', async (req,res)=>{
   var name = req.body.listing_name;
   var description = req.body.listing_description;
   var price = req.body.listing_price;
   var date_from = req.body.listing_date_from;
   var date_to = req.body.listing_date_to;
-  Space.create(name, description, price, date_from, date_to)
+  await Space.create(name, description, price, date_from, date_to)
   res.redirect('/main');
 })
 

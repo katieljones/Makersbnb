@@ -2,13 +2,13 @@
 const DatabaseConnection = require('./databaseconnection.js')
 
 module.exports = class Space {
-  static create(name, description, price, date_from, date_to) {
+  static async create(name, description, price, date_from, date_to) {
 
-    var result = DatabaseConnection.send(`INSERT INTO spaces (name, description, price, date_from, date_to) VALUES('${name}', '${description}', '${price}', '${date_from}', '${date_to}') RETURNING id, name, description, price, date_from, date_to;`);
+    var result = await DatabaseConnection.send(`INSERT INTO spaces (name, description, price, date_from, date_to) VALUES('${name}', '${description}', '${price}', '${date_from}', '${date_to}') RETURNING id, name, description, price, date_from, date_to;`);
   }
 
   static  async retrieve() {
-    var result = await DatabaseConnection.send2(`SELECT * FROM spaces;`);
+    var result = await DatabaseConnection.send(`SELECT * FROM spaces;`);
     //var result =  DatabaseConnection.send(`SELECT * FROM spaces;`);
     //console.log("in retrieve");
     //console.log(result);

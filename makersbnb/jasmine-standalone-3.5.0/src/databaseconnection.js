@@ -15,29 +15,30 @@ module.exports = class DatabaseConnection {
 
 }
 
-static send2(sql) {
+static send(sql) {
 
   var client = DatabaseConnection.connect();
+  client.end
   return client.query(sql);
 
 }
 
 
-  static send(sql) {
-    var client = DatabaseConnection.connect();
+  // static send(sql) {
+  //   var client = DatabaseConnection.connect();
 
-    client.query(sql), async function (err, result) {
+  //   client.query(sql), async function (err, result) {
 
-    if (err) {
-      return console.error('error running query', err);
-    }
+  //   if (err) {
+  //     return console.error('error running query', err);
+  //   }
 
-    client.end();
+  //   client.end();
     
-    return result;
+  //   return result;
 
-    }
+  //   }
     
 
-  }
+  // }
 }
