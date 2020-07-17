@@ -61,6 +61,7 @@ app.post('/make_listing', async (req,res)=>{
   var date_to = req.body.listing_date_to;
   await Space.create(name, description, price, date_from, date_to)
   res.redirect('/main');
+
 })
 
 app.use(function(req, res, next) {
