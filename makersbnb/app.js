@@ -6,6 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var app = express();
 
@@ -19,8 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
-
+var sess;
 app.get('/', (req,res)=> { //get method
   //res.sendFile(path.join(__dirname + '/views/index.html')); //send response
   res.render('index')
@@ -40,10 +42,12 @@ app.post('/signupsubmit', (req,res)=> { //post method
   res.redirect('/main')
 })
 
-app.post('/loginsubmit', (req,res)=> {
+app.post('/loginsubmit', async (req,res)=> {
+  console.log("In post login submit")
   var email = req.body.user_email;
   var password = req.body.user_password;
-  User.verify(email,password)
+  var verifyUser = await User.verify(email, password)
+  console.log(verifyUser);
   console.log(email);
   console.log(password);
   if (true) { //replace true with authenticate method call

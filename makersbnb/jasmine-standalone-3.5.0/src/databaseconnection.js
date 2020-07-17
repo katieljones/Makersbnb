@@ -15,11 +15,12 @@ module.exports = class DatabaseConnection {
 
 }
 
-static send(sql) {
+static async send(sql) {
 
   var client = DatabaseConnection.connect();
-  // client.end
-  return client.query(sql);
+  var result = await client.query(sql);
+  client.end();
+  return result
 
 }
 
