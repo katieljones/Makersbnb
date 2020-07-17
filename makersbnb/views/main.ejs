@@ -2,12 +2,16 @@
 <html>
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="src/interface.js"></script>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
 
   <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Make a listing</button>
+
+<h1>Welcome, <span id="user-name">user</span>!</h1>
+
 
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
