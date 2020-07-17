@@ -16,7 +16,7 @@
     "morgan": "~1.9.1",
     "pg": "^8.3.0",
     "server": "^1.0.29",
-    "ejs": "^1.0.0"
+    "ejs": "^2.5.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
