@@ -15,8 +15,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pg": "^8.3.0",
-    "pug": "2.0.0-beta11",
-    "server": "^1.0.29"
+    "server": "^1.0.29",
+    "ejs": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

@@ -7,14 +7,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -23,18 +20,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//app.use('/', indexRouter);
 
 app.get('/', (req,res)=> { //get method
-  res.sendFile(path.join(__dirname + '/views/index.html')); //send response
+  //res.sendFile(path.join(__dirname + '/views/index.html')); //send response
+  res.render('index')
+})
+
+app.get('/main', async (req,res)=> {
+  var data = await Space.retrieve();
+  var results = { spaces: (data) ? data.rows : null };
+  res.render('main', results)
 })
 
 app.post('/signupsubmit', (req,res)=> { //post method
-  //console.log(req.body.name);
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.psw;
-  //res.sendStatus(200);
   User.create(name, email, password)
   res.redirect('/main')
 })
@@ -50,30 +51,17 @@ app.post('/loginsubmit', (req,res)=> {
   } else {
     res.redirect('/')
   }
-
 })
 
-app.get('/main', (req,res)=> {
-  Space.retrieve();
-  res.sendFile(path.join(__dirname + '/views/main.html'));
-})
-
-app.get('/login', (req,res)=> {
-  res.sendFile(path.join(__dirname + '/views/login.html'));
-})
-
-app.post('/make_listing', (req,res)=>{
+app.post('/make_listing', async (req,res)=>{
   var name = req.body.listing_name;
   var description = req.body.listing_description;
   var price = req.body.listing_price;
   var date_from = req.body.listing_date_from;
   var date_to = req.body.listing_date_to;
-  // console.log(req.body)
-  Space.create(name, description, price, date_from, date_to)
+  await Space.create(name, description, price, date_from, date_to)
   res.redirect('/main');
 })
-
-app.use('/users', usersRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
@@ -83,7 +71,6 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
 
   res.status(err.status || 500);
   res.render('error');
