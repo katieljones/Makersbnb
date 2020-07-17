@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: hotpink;
 }
 
 * {box-sizing: border-box;}
@@ -17,6 +17,17 @@ input[type=text], input[type=password] {
   display: inline-block;
   border: none;
   background: mistyrose;
+}
+
+ul {
+  background: hotpink;
+  padding: 20px;
+}
+
+ul li {
+  background: #ffe5e5;
+  padding: 5px;
+  margin-left: 35px;
 }
 
 input[type=textarea] {
@@ -50,6 +61,11 @@ button {
 
 button:hover {
   opacity:1;
+}
+button:active {
+  background-color: mistyrose;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* Extra styles for the cancel button */
@@ -96,7 +112,7 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
- 
+
 /* The Close Button (x) */
 .close {
   position: absolute;

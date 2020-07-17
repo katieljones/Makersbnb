@@ -43,7 +43,7 @@ app.post('/signupsubmit', (req,res)=> { //post method
 app.post('/loginsubmit', (req,res)=> {
   var email = req.body.user_email;
   var password = req.body.user_password;
-  //Users.verify(email,password)
+  User.verify(email,password)
   console.log(email);
   console.log(password);
   if (true) { //replace true with authenticate method call
@@ -61,6 +61,7 @@ app.post('/make_listing', async (req,res)=>{
   var date_to = req.body.listing_date_to;
   await Space.create(name, description, price, date_from, date_to)
   res.redirect('/main');
+
 })
 
 app.use(function(req, res, next) {
