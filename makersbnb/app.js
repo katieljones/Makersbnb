@@ -29,9 +29,11 @@ app.get('/', (req,res)=> { //get method
 })
 
 app.get('/main', async (req,res)=> {
+  // sess=req.session;
   var data = await Space.retrieve();
   var results = { spaces: (data) ? data.rows : null };
-  res.render('main', results)
+  // var username = sess.username
+  // res.render('main', {results: results, username: username})
 })
 
 app.post('/signupsubmit', (req,res)=> { //post method
@@ -43,13 +45,13 @@ app.post('/signupsubmit', (req,res)=> { //post method
 })
 
 app.post('/loginsubmit', async (req,res)=> {
-  console.log("In post login submit")
+  sess = req.session;
   var email = req.body.user_email;
   var password = req.body.user_password;
   var verifyUser = await User.verify(email, password)
   console.log(verifyUser);
-  console.log(email);
-  console.log(password);
+  sess.userid = verifyUser.id;
+  sess.username = verifyUser.name;
   if (true) { //replace true with authenticate method call
     res.redirect('/main')
   } else {
