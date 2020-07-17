@@ -1,4 +1,4 @@
-describe('Users', function() {
+describe('User', function() {
   var user;
 
   beforeEach(function() {
@@ -9,17 +9,19 @@ describe('Users', function() {
     it('has a name', function() {
       expect(user.name).toEqual("name");
     });
+
     it('has an email address', function() {
       expect(user.email).toEqual("email");
     });
+
     it('has a password', function() {
       expect(user.password).toEqual("password");
     });
 
 
-    })
+   })
 
 
-  })
+})
 
-}
+
