@@ -34,10 +34,10 @@ app.get('/main', async (req,res)=> {
 })
 
 app.post('/signupsubmit', (req,res)=> { //post method
-  var name = req.body.name;
+  req.session.username = req.body.name;
   var email = req.body.email;
   var password = req.body.psw;
-  User.create(name, email, password)
+  User.create(req.session.username, email, password)
   res.redirect('/main')
 })
 
