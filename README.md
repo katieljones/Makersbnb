@@ -30,6 +30,26 @@ This is our team's first team project as part of Makers Academy.
 
 **Contributors**
 ----
-@stupot1
-@jamesAforster
-@rabee93
+[Rabee Mghrabi](https://github.com/Rabee93)
+[James Forster](https://github.com/jamesAforster)
+[Stuart Pitcher](https://github.com/stupot1)
+
+
+**Instructions**
+----
+Run:
+```
+npm install
+```
+
+To run the server:
+
+```
+node app.js
+```
+
+The LocalHost should be used to run this program:
+
+```
+localhost:3000
+```
